@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="conj" tilewidth="32" tileheight="32">
+  <image source="../../../../../../usr/lib/python2.7/dist-packages/pilasengine/ejemplos/free_tileset_version_10.png" width="480" height="1216"/>
+ </tileset>
+ <layer name="suelo" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwTYWRgEBnFo3gUj+JRPKwwAGZ7HsQ=
+  </data>
+ </layer>
+ <layer name="solido objetos" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzjZmBg4KYTpgXAZT43lWh0e2gJRv0x6g9agFF/kO4PepRXtMYA8KwFww==
+  </data>
+ </layer>
+</map>
