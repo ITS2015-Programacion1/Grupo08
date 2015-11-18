@@ -1,24 +1,53 @@
 import pilasengine
 import os
+import time
 import sys
-
 
 pilas=pilasengine.iniciar()
 
-
-
 mapa = pilas.actores.MapaTiled('mapa_desde_archivo.tmx')
 
-#Cada bloque mide 30
+class bomb1(pilasengine.actores.Actor):
+    def iniciar(self):
+        self.x = 200
+        self.imagen = "a.png"
+        grilla4 = pilas.imagenes.cargar_grilla("4.png", 3)        
+        grilla3 = pilas.imagenes.cargar_grilla("3.png", 3)        
+        grilla2 = pilas.imagenes.cargar_grilla("2.png", 3)
+        grilla1 = pilas.imagenes.cargar_grilla("1.png", 3)    
+    def actualizar(self):
+        if (pilas.control.izquierda):
+            self.x -= 8
+            grilla4 = pilas.imagenes.cargar_grilla("4.png", 3 , 0 , 3)
+            self.imagen = grilla4
 
-class maton(pilasengine.actores.Maton):
-    maton=pilas.actores.Maton(x=0,y=100)
-    maton.figura.x=265
-    def bomb(self):
+
+        if (pilas.control.derecha):
+            self.x += 8
+            grilla3 = pilas.imagenes.cargar_grilla("3.png", 3)
+            self.imagen = grilla3
+
+        if (pilas.control.abajo):
+            self.y -= 8
+            grilla2 = pilas.imagenes.cargar_grilla("2.png", 3)
+            self.imagen = grilla2
+
+        if (pilas.control.arriba):
+            self.y += 8
+            grilla1 = pilas.imagenes.cargar_grilla("1.png", 3)
+            self.imagen = grilla1
+
         if (pilas.control.boton):
-            bomba=pilas.actores.Bomba
+            tiempo = 0
+            bomba=pilas.actores.Bomba(x=self.x,y=self.y)
             bomba.explotar()
+            while ( tiempo <= 120 ):
+                tiempo = tiempo + 1
+                if ( tiempo == 120 ):
+                    bomba.explotar()
 
-pilas.fisica.gravedad_y=0
 
+pilas.actores.vincular(bomb1)
+p = pilas.actores.bomb1()
+bombita=bomb1(pilas)
 pilas.ejecutar()
